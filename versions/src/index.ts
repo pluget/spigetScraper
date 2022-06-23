@@ -10,7 +10,7 @@ async function getVersions() {
 
   const data: Array<Object> = [];
 
-  async function fetchWithRetries(url: string, retries = 42): Promise<any> {
+  async function fetchWithRetries(url: string, retries = 12): Promise<any> {
     try {
       const response = await fetch(url);
       return await response.json();
@@ -55,6 +55,9 @@ async function getVersions() {
 }
 
 getVersions().then((data) => {
-  const file = resolve(process.cwd(), "../../scraperRepository/spigetVersions.json");
+  const file = resolve(
+    process.cwd(),
+    "../../scraperRepository/spigetVersions.json"
+  );
   writeFile(file, data);
 });
